@@ -40,7 +40,7 @@ function App() {
       </header>
 
 
-      <div className="w-full h-full border border-[#CFB4C9] ">
+      <div className="w-full h-full  ">
 
 
 
