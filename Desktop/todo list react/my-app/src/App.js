@@ -2,7 +2,10 @@
 import { useState } from 'react';
 import './App.css';
 import TodoBox from './components/todobox';
+import add from './components/todobox/plus-lg.svg';
 
+
+// import image from './GettyImages-484576000-c-bc46733.webp'
 function App() {
 
   const [inputValue, setInputValue] = useState("")
@@ -20,9 +23,9 @@ function App() {
 
 
 
-function deleteIt(id){
-  setTodoList(todoList.filter(item=>item.id!== id))
-}
+  function deleteIt(id) {
+    setTodoList(todoList.filter(item => item.id !== id))
+  }
 
 
 
@@ -31,31 +34,46 @@ function deleteIt(id){
 
   return (
     <>
-      <div className="w-full h-full bg-[#141414]">
-        <h1 className="text-white text-center text-[2rem] sm:text-[2.5rem] pt-1">todo list</h1>
+      <header className='pl-2 w-full border border-purple-500 rounded-[4px] border-4'>
+        <h1 className="text-[#353347] text-left text-[1.5rem] sm:text-[2.5rem] pt-1 ">TO DO LIST</h1>
 
-        <div className="w-[85%] md:w-[65%] h-full mx-auto flex justify-center gap-2 rounded-[5px] my-[1.75rem] bg-[#252525] py-[1.25rem]">
-          <input className="rounded-[5px] w-[70%] md:w-[55%]" value={inputValue} onChange={(e)=>setInputValue(e.target.value)}/>
-          <button className="text-white bg-gray-400 rounded-[5px] p-2" onClick={btnAdd}>add</button>
+      </header>
+
+
+      <div className="w-full h-full border border-[#CFB4C9] ">
+
+
+
+
+
+
+
+        <div className='  flex flex-col justify-center'>
+
+          <div className="w-[85%] md:w-[65%] h-full mx-auto flex justify-center gap-2 rounded-[5px] my-[0.75rem] py-[1.25rem]">
+            <input className="rounded-[5px] w-[70%] md:w-[60%] md:text-[1.5rem] bg-[#E5E7EB] border border-[#BF7DF7]" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+            <button className="text-white bg-gradient-to-r from-[#E5E7EB] to-[#3D4958] rounded-[5px] p-2" onClick={btnAdd}><img src={add} alt='add'/></button>
+
+          </div>
+          <div className=' w-[90%] py-2 mt-[-10px] bg-[#EAD5FE] mx-auto mt-4 mb-2'>
+            <p className='text-center md:text-[1.7rem]'>MY TASKS</p>
+          </div>
+
+
+
+
+          <div className="todoWrapper">
+            {todoList.map(item => (
+              <TodoBox id={item.id} deleteFunction={deleteIt} todoText={item.todoText} />
+            ))}
+
+
+
+
+
+          </div>
 
         </div>
-
-
-
-
-
-        <div className="todoWrapper">
-{todoList.map(item=>(
-  <TodoBox id={item.id} deleteFunction={deleteIt} todoText={item.todoText}/>
-))}
-
-
-
-
-
-        </div>
-
-
 
 
 
@@ -80,10 +98,6 @@ function deleteIt(id){
 
 
       </div>
-
-
-
-
 
 
     </>
